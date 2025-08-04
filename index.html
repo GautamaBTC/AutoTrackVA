@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VIPавто: Сервисный бортовой журнал</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔧</text></svg>">
+    <!-- Библиотеки для экспорта в PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">VIP<span class="logo-accent">авто</span> Журнал</h1>
+            <div class="header-controls">
+                <button id="help-btn" class="btn btn-secondary" aria-label="Показать инструкцию">Инструкция</button>
+                <button id="reset-all-btn" class="btn btn-danger" aria-label="Сбросить все данные">Сбросить всё</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        
+        <section class="current-day-section">
+            <h2 id="current-date"></h2>
+            <div id="masters-grid" class="masters-grid">
+                <!-- Карточки мастеров будут рендериться здесь -->
+            </div>
+        </section>
+
+        <section class="summary-section">
+            <h3>Сводка за день</h3>
+            <div id="summary-table-container">
+                <!-- Сводная таблица будет рендериться здесь -->
+            </div>
+            <div class="export-buttons">
+                <button id="export-day-csv" class="btn">Экспорт дня (CSV)</button>
+                <button id="export-day-pdf" class="btn">Экспорт дня (PDF)</button>
+            </div>
+        </section>
+
+        <section class="history-section">
+            <details class="accordion">
+                <summary class="accordion-header">
+                    <h3>История за неделю</h3>
+                    <span class="accordion-icon"></span>
+                </summary>
+                <div class="accordion-content">
+                    <div id="history-container">
+                        <!-- История по дням будет рендериться здесь -->
+                    </div>
+                     <div class="export-buttons" id="history-export-buttons">
+                        <button id="export-week-csv" class="btn">Экспорт недели (CSV)</button>
+                        <button id="export-week-pdf" class="btn">Экспорт недели (PDF)</button>
+                    </div>
+                </div>
+            </details>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2024 VIPавто. Все права защищены.</p>
+    </footer>
+
+    <!-- Модальное окно для инструкции -->
+    <dialog id="help-modal" class="modal">
+        <div class="modal-content">
+            <h3>Как пользоваться журналом</h3>
+            <p><strong>1. Добавление заказа:</strong> В карточке мастера введите сумму, выберите тип оплаты и нажмите "Добавить". Марка авто не обязательна.</p>
+            <p><strong>2. Премии:</strong> Директор может установить премию для мастера с помощью ползунка. Премия — это % от доли мастера, который переходит к нему из доли директора.</p>
+            <p><strong>3. Сводка:</strong> Внизу страницы отображается общая сводка за день по всем мастерам и сервису.</p>
+            <p><strong>4. История:</strong> Данные за каждый день рабочей недели (ПН-ПТ) автоматически сохраняются в разделе "История за неделю".</p>
+            <p><strong>5. Экспорт:</strong> Вы можете экспортировать отчёты за текущий день или за всю неделю в форматах CSV и PDF.</p>
+            <p><strong>6. Сброс данных:</strong> Кнопка "Сбросить всё" полностью очищает текущие данные и историю. В понедельник история прошлой недели очищается автоматически.</p>
+            <button id="close-modal-btn" class="btn" aria-label="Закрыть инструкцию">Понятно</button>
+        </div>
+    </dialog>
+    
+    <script src="main.js"></script>
+</body>
+</html>
