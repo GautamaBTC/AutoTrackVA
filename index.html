@@ -29,6 +29,7 @@
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
       --shadow-lg: 0 10px 30px rgba(0, 0, 0, 0.5);
       --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      
       /* Светлая тема - чистая, элегантная */
       --light-bg-primary: #f0f7ff;
       --light-bg-secondary: #e1efff;
@@ -43,11 +44,8 @@
       --light-warning: #ca8a04;
       --light-danger: #dc2626;
       --light-info: #2563eb;
-      
-      /* Переменные для высоты хедера */
-      --header-height: 56px;
-      --header-offset: calc(var(--header-height) + 0.9rem);
     }
+
     [data-theme="light"] {
       --bg-primary: var(--light-bg-primary);
       --bg-secondary: var(--light-bg-secondary);
@@ -63,12 +61,14 @@
       --danger: var(--light-danger);
       --info: var(--light-info);
     }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
       -webkit-tap-highlight-color: transparent;
     }
+
     body {
       font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
       background: var(--bg-primary);
@@ -81,25 +81,31 @@
       overflow: hidden;
       position: relative;
     }
+
     /* Убираем стандартное выделение */
     *:focus {
       outline: none;
     }
+
     /* Кастомный скроллбар */
     ::-webkit-scrollbar {
       width: 8px;
     }
+
     ::-webkit-scrollbar-track {
       background: var(--bg-secondary);
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb {
       background: var(--accent-primary);
       border-radius: 4px;
     }
+
     ::-webkit-scrollbar-thumb:hover {
       background: var(--accent-secondary);
     }
+
     /* Шапка приложения */
     header {
       padding: 0.7rem 1rem;
@@ -114,8 +120,9 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      height: var(--header-height);
+      height: 56px;
     }
+
     .app-title {
       display: flex;
       align-items: center;
@@ -125,40 +132,48 @@
       font-weight: 600;
       font-family: 'Montserrat', sans-serif;
     }
+
     .app-title .vip {
       color: #8b9dc3;
       font-weight: 700;
     }
+
     .app-title .auto {
       color: var(--text-primary);
       font-weight: 700;
     }
+
     .app-title i {
       font-size: 1.2rem;
       color: var(--accent-primary);
     }
+
     .header-controls {
       display: flex;
       align-items: center;
       gap: 0.8rem;
     }
+
     .header-info {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
       gap: 0.1rem;
     }
+
     .date-time {
       font-size: 0.7rem;
       color: var(--text-secondary);
       font-weight: 400;
     }
+
     .current-time {
       font-size: 0.85rem;
       font-weight: 500;
       color: var(--accent-primary);
       letter-spacing: 0.5px;
     }
+
     /* Переключатель темы */
     .theme-toggle {
       position: relative;
@@ -174,6 +189,7 @@
       align-items: center;
       padding: 0 2px;
     }
+
     .theme-toggle::before {
       content: '';
       position: absolute;
@@ -185,35 +201,43 @@
       transition: var(--transition);
       z-index: 1;
     }
+
     .theme-toggle[data-theme="dark"]::before {
       left: 3px;
     }
+
     .theme-toggle[data-theme="light"]::before {
       left: 27px;
       background: linear-gradient(145deg, #ffffff, #edf2f7);
     }
+
     .theme-toggle .sun-icon,
     .theme-toggle .moon-icon {
       position: absolute;
       font-size: 0.7rem;
       transition: var(--transition);
     }
+
     .theme-toggle .sun-icon {
       left: 6px;
       color: #fbbf24;
       text-shadow: 0 0 4px rgba(251, 191, 36, 0.5);
     }
+
     .theme-toggle .moon-icon {
       right: 6px;
       color: #cbd5e0;
       text-shadow: 0 0 4px rgba(203, 213, 224, 0.5);
     }
+
     .theme-toggle[data-theme="dark"] .sun-icon {
       opacity: 0;
     }
+
     .theme-toggle[data-theme="light"] .moon-icon {
       opacity: 0;
     }
+
     /* Навигация */
     .nav-container {
       position: fixed;
@@ -226,6 +250,7 @@
       padding: 0.4rem 0;
       backdrop-filter: blur(10px);
     }
+
     .nav-tabs {
       display: flex;
       justify-content: space-around;
@@ -233,6 +258,7 @@
       margin: 0 auto;
       padding: 0 0.7rem;
     }
+
     .nav-tab {
       flex: 1;
       padding: 0.55rem;
@@ -250,10 +276,12 @@
       gap: 0.2rem;
       position: relative;
     }
+
     .nav-tab.active {
       color: var(--accent-primary);
       text-shadow: 0 0 5px rgba(108, 158, 255, 0.4);
     }
+
     .nav-tab.active::after {
       content: '';
       position: absolute;
@@ -263,26 +291,31 @@
       background: var(--accent-primary);
       border-radius: 2px;
     }
+
     .nav-tab-icon {
       font-size: 0.9rem;
     }
+
     /* Основной контент */
     .main-content {
-      height: calc(100vh - var(--header-height) - 56px); /* Высота экрана минус хедер и футер */
+      height: calc(100vh - 56px - 56px); /* Высота экрана минус хедер и футер */
       overflow-y: auto;
       padding: 0.9rem;
-      padding-top: var(--header-offset); /* Высота хедера + отступ */
+      padding-top: calc(56px + 0.9rem); /* Высота хедера + отступ */
       padding-bottom: 70px; /* Отступ для футера */
       margin-top: 0;
-      scroll-padding-top: var(--header-offset); /* Учитываем хедер при прокрутке */
+      scroll-padding-top: calc(56px + 0.9rem); /* Учитываем хедер при прокрутке */
     }
+
     .tab-content {
       display: none;
       animation: fadeIn 0.4s ease-out;
     }
+
     .tab-content.active {
       display: block;
     }
+
     /* Компактный дашборд */
     .dashboard {
       display: grid;
@@ -290,6 +323,7 @@
       gap: 0.65rem;
       margin-bottom: 1rem;
     }
+
     .dashboard-item {
       background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
       padding: 0.8rem;
@@ -301,6 +335,7 @@
       position: relative;
       overflow: hidden;
     }
+
     .dashboard-item::before {
       content: '';
       position: absolute;
@@ -310,17 +345,20 @@
       height: 2px;
       background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     }
+
     .dashboard-item:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-lg);
       border-color: rgba(108, 158, 255, 0.3);
     }
+
     .dashboard-icon {
       font-size: 1.1rem;
       margin-bottom: 0.4rem;
       color: var(--accent-primary);
       text-shadow: 0 0 5px rgba(108, 158, 255, 0.3);
     }
+
     .dashboard-value {
       font-size: 1rem;
       font-weight: 600;
@@ -328,11 +366,13 @@
       margin: 0.2rem 0;
       line-height: 1.2;
     }
+
     .dashboard-label {
       color: var(--text-secondary);
       font-size: 0.65rem;
       font-weight: 400;
     }
+
     /* Секции */
     .section {
       background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
@@ -343,8 +383,8 @@
       border: 1px solid rgba(108, 158, 255, 0.15);
       position: relative;
       overflow: hidden;
-      scroll-margin-top: var(--header-offset); /* Учитываем хедер при прокрутке */
     }
+
     .section::before {
       content: '';
       position: absolute;
@@ -354,6 +394,7 @@
       height: 2px;
       background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
     }
+
     .section-header {
       display: flex;
       justify-content: space-between;
@@ -362,6 +403,7 @@
       padding-bottom: 0.6rem;
       border-bottom: 1px solid rgba(108, 158, 255, 0.15);
     }
+
     .section-title {
       color: var(--accent-primary);
       margin: 0;
@@ -372,6 +414,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     /* Таблицы */
     .data-table {
       width: 100%;
@@ -379,6 +422,7 @@
       margin-top: 0.6rem;
       font-size: 0.8rem;
     }
+
     .data-table th {
       background: var(--bg-accent);
       color: var(--accent-primary);
@@ -388,17 +432,21 @@
       text-align: center;
       border-bottom: 2px solid var(--accent-primary);
     }
+
     .data-table td {
       padding: 0.6rem 0.4rem;
       text-align: center;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
+
     .data-table tr:last-child td {
       border-bottom: none;
     }
+
     .data-table tr:hover {
       background: rgba(108, 158, 255, 0.07);
     }
+
     /* Ползунки премий */
     .slider-container {
       display: flex;
@@ -406,6 +454,7 @@
       justify-content: center;
       gap: 0.4rem;
     }
+
     .bonus-slider {
       width: 60px;
       height: 16px;
@@ -415,6 +464,7 @@
       outline: none;
       border: 1px solid rgba(108, 158, 255, 0.25);
     }
+
     .bonus-slider::-webkit-slider-thumb {
       -webkit-appearance: none;
       width: 16px;
@@ -426,10 +476,12 @@
       border: 2px solid var(--bg-card);
       transition: var(--transition);
     }
+
     .bonus-slider::-webkit-slider-thumb:hover {
       transform: scale(1.1);
       box-shadow: 0 0 0 5px rgba(108, 158, 255, 0.15);
     }
+
     .bonus-percent {
       font-size: 0.75rem;
       font-weight: 600;
@@ -437,6 +489,7 @@
       min-width: 30px;
       text-shadow: 0 0 3px rgba(108, 158, 255, 0.3);
     }
+
     /* Кнопки */
     .btn {
       padding: 0.6rem 0.9rem;
@@ -456,6 +509,7 @@
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
       font-family: 'Montserrat', sans-serif;
     }
+
     .btn::before {
       content: '';
       position: absolute;
@@ -463,83 +517,101 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
       transition: 0.5s;
     }
+
     .btn:hover::before {
       left: 100%;
     }
+
     .btn-primary {
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: #ffffff;
       font-weight: 600;
       box-shadow: 0 2px 10px rgba(108, 158, 255, 0.25);
     }
+
     .btn-primary:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(108, 158, 255, 0.35);
     }
+
     .btn-secondary {
       background: var(--bg-accent);
       color: var(--text-primary);
       border: 1px solid rgba(108, 158, 255, 0.15);
     }
+
     .btn-secondary:hover {
       background: var(--bg-card);
       border-color: rgba(108, 158, 255, 0.3);
       transform: translateY(-1px);
     }
+
     .btn-danger {
       background: linear-gradient(135deg, var(--danger), #ef4444);
       color: white;
       box-shadow: 0 2px 10px rgba(248, 113, 113, 0.25);
     }
+
     .btn-danger:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(248, 113, 113, 0.35);
     }
+
     .btn-success {
       background: linear-gradient(135deg, var(--success), #22c55e);
       color: white;
       box-shadow: 0 2px 10px rgba(74, 222, 128, 0.25);
     }
+
     .btn-success:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(74, 222, 128, 0.35);
     }
+
     .btn-warning {
       background: linear-gradient(135deg, var(--warning), #f59e0b);
       color: #000;
       box-shadow: 0 2px 10px rgba(251, 191, 36, 0.25);
     }
+
     .btn-warning:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(251, 191, 36, 0.35);
     }
+
     .btn-info {
       background: linear-gradient(135deg, var(--info), #3b82f6);
       color: white;
       box-shadow: 0 2px 10px rgba(96, 165, 250, 0.25);
     }
+
     .btn-info:hover {
       transform: translateY(-1px);
       box-shadow: 0 4px 12px rgba(96, 165, 250, 0.35);
     }
+
     .btn-block {
       width: 100%;
     }
+
     .btn-sm {
       padding: 0.45rem 0.65rem;
       font-size: 0.7rem;
     }
+
     .btn-xs {
       padding: 0.3rem 0.5rem;
       font-size: 0.65rem;
     }
+
     /* Формы */
     .form-group {
       margin-bottom: 0.9rem;
     }
+
     .form-label {
       display: block;
       margin-bottom: 0.4rem;
@@ -547,6 +619,7 @@
       color: var(--text-primary);
       font-size: 0.8rem;
     }
+
     .form-control {
       width: 100%;
       padding: 0.65rem;
@@ -558,21 +631,26 @@
       font-family: inherit;
       transition: var(--transition);
     }
+
     [data-theme="light"] .form-control {
       background: rgba(194, 217, 255, 0.5);
     }
+
     .form-control:focus {
       border-color: var(--accent-primary);
       box-shadow: 0 0 0 2px rgba(108, 158, 255, 0.2);
       background: rgba(35, 48, 77, 0.7);
     }
+
     [data-theme="light"] .form-control:focus {
       background: rgba(194, 217, 255, 0.7);
     }
+
     .form-textarea {
       min-height: 80px;
       resize: vertical;
     }
+
     /* Модальные окна */
     .modal {
       position: fixed;
@@ -588,13 +666,16 @@
       padding: 1rem;
       backdrop-filter: blur(10px);
     }
+
     [data-theme="light"] .modal {
       background: rgba(240, 247, 255, 0.95);
     }
+
     .modal.active {
       display: flex;
       animation: fadeIn 0.3s ease-out;
     }
+
     .modal-content {
       background: linear-gradient(145deg, var(--bg-card), var(--bg-secondary));
       padding: 1.2rem;
@@ -603,18 +684,20 @@
       max-width: 450px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
-      border: 1px solid rgba(108, 158, 255, 0.15);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      border: 1px solid rgba(108, 158, 255, 0.25);
       position: relative;
     }
+
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.2rem;
       padding-bottom: 0.8rem;
-      border-bottom: 1px solid rgba(108, 158, 255, 0.1);
+      border-bottom: 1px solid rgba(108, 158, 255, 0.2);
     }
+
     .modal-title {
       color: var(--accent-primary);
       margin: 0;
@@ -625,6 +708,7 @@
       align-items: center;
       gap: 0.5rem;
     }
+
     .modal-close {
       background: none;
       border: none;
@@ -640,11 +724,13 @@
       align-items: center;
       justify-content: center;
     }
+
     .modal-close:hover {
       color: var(--accent-primary);
-      background: rgba(108, 158, 255, 0.1);
+      background: rgba(108, 158, 255, 0.15);
       transform: rotate(90deg);
     }
+
     /* Уведомления */
     .notification-container {
       position: fixed;
@@ -655,12 +741,13 @@
       flex-direction: column;
       gap: 0.5rem;
     }
+
     .notification {
       background: linear-gradient(135deg, var(--accent-primary), var(--accent-secondary));
       color: #ffffff;
       padding: 0.8rem 1rem;
       border-radius: var(--border-radius-sm);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
       font-weight: 500;
       transform: translateX(100%);
       transition: transform 0.3s ease-out;
@@ -671,25 +758,31 @@
       max-width: 300px;
       font-size: 0.8rem;
     }
+
     .notification.show {
       transform: translateX(0);
     }
+
     .notification.success {
       background: linear-gradient(135deg, var(--success), #22c55e);
       color: #ffffff;
     }
+
     .notification.error {
       background: linear-gradient(135deg, var(--danger), #ef4444);
       color: #ffffff;
     }
+
     .notification.warning {
       background: linear-gradient(135deg, var(--warning), #f59e0b);
       color: #000;
     }
+
     .notification.info {
       background: linear-gradient(135deg, var(--info), #3b82f6);
       color: #ffffff;
     }
+
     .notification-close {
       background: none;
       border: none;
@@ -701,94 +794,118 @@
       opacity: 0.7;
       transition: var(--transition);
     }
+
     .notification-close:hover {
       opacity: 1;
       transform: scale(1.1);
     }
+
     /* Анимации */
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(8px); }
       to { opacity: 1; transform: translateY(0); }
     }
+
     @keyframes slideIn {
       from { transform: translateX(100%); }
       to { transform: translateX(0); }
     }
+
     @keyframes slideOut {
       from { transform: translateX(0); }
       to { transform: translateX(100%); }
     }
+
     .slide-in {
       animation: slideIn 0.3s ease-out forwards;
     }
+
     .slide-out {
       animation: slideOut 0.3s ease-out forwards;
     }
+
     /* Адаптивность */
     @media (max-width: 768px) {
       .main-content {
         padding: 0.75rem;
-        padding-top: var(--header-offset);
+        padding-top: calc(56px + 0.75rem);
         padding-bottom: 70px;
       }
+      
       .dashboard {
         grid-template-columns: repeat(2, 1fr);
         gap: 0.55rem;
       }
+      
       .dashboard-item {
         padding: 0.7rem;
       }
+      
       .section {
         padding: 0.85rem;
       }
+      
       .data-table th,
       .data-table td {
         padding: 0.5rem 0.3rem;
         font-size: 0.65rem;
       }
+      
       .bonus-slider {
         width: 50px;
       }
+      
       .app-title {
         font-size: 0.95rem;
       }
+      
       .nav-tab {
         font-size: 0.6rem;
         padding: 0.45rem;
       }
+      
       .header-info {
         gap: 0.05rem;
       }
+      
       .date-time {
         font-size: 0.6rem;
       }
+      
       .current-time {
         font-size: 0.75rem;
       }
     }
+
     @media (max-width: 480px) {
       .dashboard {
         grid-template-columns: 1fr 1fr;
       }
+      
       .section-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.7rem;
       }
+      
       .modal-content {
         padding: 0.9rem;
       }
+      
       .form-control {
         padding: 0.55rem;
       }
+      
       .btn {
         padding: 0.5rem 0.7rem;
         font-size: 0.7rem;
       }
+      
       .data-table {
         font-size: 0.65rem;
       }
     }
+
     /* Дополнительные стили */
     .order-item {
       display: flex;
@@ -801,18 +918,22 @@
       border-left: 2px solid var(--accent-primary);
       transition: var(--transition);
     }
+
     .order-item:hover {
       transform: translateX(3px);
       border-left-width: 3px;
     }
+
     .order-info {
       flex: 1;
     }
+
     .order-amount {
       font-weight: 600;
       color: var(--accent-primary);
       font-size: 0.9rem;
     }
+
     .order-time {
       font-size: 0.65rem;
       color: var(--text-secondary);
@@ -821,17 +942,20 @@
       align-items: center;
       gap: 0.25rem;
     }
+
     .empty-state {
       text-align: center;
       padding: 1.5rem 1rem;
       color: var(--text-secondary);
     }
+
     .empty-state i {
       font-size: 1.8rem;
       margin-bottom: 0.6rem;
       color: var(--accent-primary);
       opacity: 0.4;
     }
+
     .week-summary {
       display: flex;
       justify-content: space-between;
@@ -841,38 +965,45 @@
       margin-top: 1rem;
       border: 1px solid rgba(108, 158, 255, 0.1);
     }
+
     .summary-item {
       text-align: center;
     }
+
     .summary-value {
       font-size: 0.9rem;
       font-weight: 600;
       color: var(--accent-primary);
     }
+
     .summary-label {
       font-size: 0.65rem;
       color: var(--text-secondary);
       margin-top: 0.15rem;
     }
+
     .master-badge {
       display: inline-block;
       padding: 0.15rem 0.5rem;
-      background: rgba(108, 158, 255, 0.1);
+      background: rgba(108, 158, 255, 0.15);
       border-radius: 20px;
       font-size: 0.7rem;
       color: var(--accent-primary);
     }
+    
     /* Диаграммы */
     .chart-container {
       display: flex;
       justify-content: center;
       margin: 1.2rem 0;
     }
+    
     .pie-chart {
       width: 150px;
       height: 150px;
       position: relative;
     }
+    
     .chart-center {
       position: absolute;
       top: 50%;
@@ -890,6 +1021,7 @@
       color: var(--accent-primary);
       box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     }
+    
     .chart-legend {
       display: flex;
       flex-wrap: wrap;
@@ -897,37 +1029,45 @@
       gap: 0.6rem;
       margin-top: 0.8rem;
     }
+    
     .legend-item {
       display: flex;
       align-items: center;
       gap: 0.3rem;
       font-size: 0.7rem;
     }
+    
     .legend-color {
       width: 10px;
       height: 10px;
       border-radius: 2px;
     }
+    
     /* Статистика мастеров */
     .master-stats {
       margin-top: 1rem;
     }
+    
     .master-stat-item {
       display: flex;
       justify-content: space-between;
       padding: 0.5rem 0;
       border-bottom: 1px solid rgba(255,255,255,0.05);
     }
+    
     .master-stat-item:last-child {
       border-bottom: none;
     }
+    
     .master-name {
       font-weight: 500;
     }
+    
     .master-revenue {
       font-weight: 600;
       color: var(--accent-primary);
     }
+    
     /* Капча */
     .captcha-container {
       margin-top: 0.8rem;
@@ -936,6 +1076,7 @@
       border-radius: var(--border-radius-sm);
       text-align: center;
     }
+    
     .captcha-challenge {
       font-size: 1.2rem;
       font-weight: 700;
@@ -943,6 +1084,7 @@
       color: var(--accent-primary);
       letter-spacing: 2px;
     }
+    
     .captcha-input {
       width: 80px;
       text-align: center;
@@ -954,13 +1096,16 @@
       border-radius: var(--border-radius-sm);
       color: var(--text-primary);
     }
+    
     /* Цвета для сумм */
     .amount-positive {
       color: var(--success);
     }
+    
     .amount-negative {
       color: var(--danger);
     }
+    
     .amount-neutral {
       color: var(--warning);
     }
@@ -983,6 +1128,7 @@
       </div>
     </div>
   </header>
+  
   <div class="main-content">
     <!-- Главная вкладка -->
     <div id="home" class="tab-content active">
@@ -1016,6 +1162,7 @@
           <div class="dashboard-label">Нал/Карта</div>
         </div>
       </div>
+      
       <div class="section">
         <div class="section-header">
           <h3 class="section-title">
@@ -1044,6 +1191,7 @@
           </button>
         </div>
       </div>
+      
       <div class="section">
         <div class="section-header">
           <h3 class="section-title">
@@ -1060,6 +1208,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Учет заказов -->
     <div id="orders" class="tab-content">
       <div class="section">
@@ -1082,6 +1231,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Финансы -->
     <div id="finance" class="tab-content">
       <div class="section">
@@ -1099,6 +1249,7 @@
           </div>
         </div>
       </div>
+      
       <div class="section">
         <div class="section-header">
           <h3 class="section-title">
@@ -1114,6 +1265,7 @@
           </div>
         </div>
       </div>
+      
       <div class="section">
         <div class="section-header">
           <h3 class="section-title">
@@ -1130,6 +1282,7 @@
         </div>
       </div>
     </div>
+    
     <!-- Архив -->
     <div id="archive" class="tab-content">
       <div class="section">
@@ -1147,6 +1300,7 @@
           </div>
         </div>
       </div>
+      
       <div class="section">
         <div class="section-header">
           <h3 class="section-title">
@@ -1165,6 +1319,7 @@
       </div>
     </div>
   </div>
+  
   <div class="nav-container">
     <div class="nav-tabs">
       <button class="nav-tab active" data-tab="home">
@@ -1185,17 +1340,20 @@
       </button>
     </div>
   </div>
+  
   <div id="modal-root"></div>
   <div id="notification-root" class="notification-container"></div>
+
   <script>
     // Облачный бортовой журнал VIPAUTO
     (function() {
       'use strict';
+
       // === КОНСТАНТЫ И НАСТРОЙКИ ===
-      const STORAGE_KEY = 'vipAutoJournalData_v13';
+      const STORAGE_KEY = 'vipAutoJournalData_v14';
       const MASTERS = ["Владимир Ч.", "Владимир А.", "Максим", "Андрей", "Данила", "Артём"];
       const DIRECTOR = "Орлов Владимир";
-      
+
       // === УТИЛИТЫ ===
       function loadData() {
         try {
@@ -1205,7 +1363,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '13.0'
+            version: '14.0'
           };
         } catch (error) {
           console.error('Ошибка загрузки данных:', error);
@@ -1215,11 +1373,11 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '13.0'
+            version: '14.0'
           };
         }
       }
-      
+
       function saveData(data) {
         try {
           localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
@@ -1228,7 +1386,7 @@
           showNotification('Ошибка сохранения данных', 'error');
         }
       }
-      
+
       function formatCurrency(value) {
         return new Intl.NumberFormat('ru-RU', {
           style: 'currency',
@@ -1236,11 +1394,11 @@
           minimumFractionDigits: 0
         }).format(value);
       }
-      
+
       function formatDate(date) {
         return new Date(date).toLocaleDateString('ru-RU');
       }
-      
+
       function getWeekNumber(date) {
         const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
         const dayNum = d.getUTCDay() || 7;
@@ -1248,18 +1406,16 @@
         const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
         return Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
       }
-      
+
       function getCurrentWeekId() {
         const now = new Date();
         return `${now.getFullYear()}-W${getWeekNumber(now)}`;
       }
-      
+
       function getTodayKey() {
-        // Используем массив для стабильного получения ключа дня недели
-        const weekdays = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
-        return weekdays[new Date().getDay()];
+        return new Date().toLocaleDateString('ru-RU', { weekday: 'short' }).toLowerCase();
       }
-      
+
       function getCurrentDateTime() {
         const now = new Date();
         return {
@@ -1267,29 +1423,31 @@
           time: now.toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit', second: '2-digit' })
         };
       }
-      
+
       // === ГЛОБАЛЬНЫЕ ПЕРЕМЕННЫЕ ===
       let data = loadData();
       const modalRoot = document.getElementById('modal-root');
       const notificationRoot = document.getElementById('notification-root');
       let captchaValue = '';
-      let timeIntervalId = null; // Для управления setInterval
-      
+
       // === ПЕРЕКЛЮЧЕНИЕ ТЕМЫ ===
       function initThemeToggle() {
         const themeToggle = document.getElementById('themeToggle');
         const currentTheme = localStorage.getItem('theme') || 'dark';
+        
         document.body.setAttribute('data-theme', currentTheme);
         themeToggle.setAttribute('data-theme', currentTheme);
+        
         themeToggle.addEventListener('click', () => {
           const currentTheme = document.body.getAttribute('data-theme');
           const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+          
           document.body.setAttribute('data-theme', newTheme);
           themeToggle.setAttribute('data-theme', newTheme);
           localStorage.setItem('theme', newTheme);
         });
       }
-      
+
       // === НАВИГАЦИЯ ПО ВКЛАДКАМ ===
       function setupTabs() {
         document.querySelectorAll('.nav-tab').forEach(tab => {
@@ -1297,9 +1455,11 @@
             // Убираем активный класс у всех вкладок
             document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+            
             // Добавляем активный класс текущей вкладке
             tab.classList.add('active');
             document.getElementById(tab.dataset.tab).classList.add('active');
+            
             // Обновляем содержимое вкладки
             switch(tab.dataset.tab) {
               case 'home':
@@ -1318,14 +1478,9 @@
           });
         });
       }
-      
+
       // === ГЛАВНАЯ СТРАНИЦА ===
       function renderHome() {
-        // Очищаем предыдущий интервал, если он существует
-        if (timeIntervalId) {
-          clearInterval(timeIntervalId);
-        }
-        
         // Обновляем дату и время
         const dateTime = getCurrentDateTime();
         document.getElementById('currentDate').textContent = dateTime.date;
@@ -1344,18 +1499,18 @@
         document.getElementById('closeWeek').addEventListener('click', closeWeek);
         
         // Обновляем время каждую секунду
-        timeIntervalId = setInterval(() => {
+        setInterval(() => {
           const time = getCurrentDateTime();
           document.getElementById('currentTime').textContent = time.time;
         }, 1000);
       }
-      
+
       function updateStats() {
         let totalRevenue = 0;
         let totalOrders = 0;
         let cashOrders = 0;
         let cardOrders = 0;
-        
+
         // Собираем все заказы за неделю
         for (const day in data.currentWeek) {
           for (const master in data.currentWeek[day]) {
@@ -1368,18 +1523,20 @@
             });
           }
         }
-        
+
         const avgCheck = totalOrders > 0 ? Math.round(totalRevenue / totalOrders) : 0;
+
         document.getElementById('totalRevenue').textContent = formatCurrency(totalRevenue);
         document.getElementById('totalOrders').textContent = totalOrders;
         document.getElementById('avgCheck').textContent = formatCurrency(avgCheck);
         document.getElementById('paymentSplit').textContent = `${cashOrders}/${cardOrders}`;
       }
-      
+
       function renderTodayOrders() {
         const container = document.getElementById('todayOrdersList');
         const today = getTodayKey();
         const dayData = data.currentWeek[today] || {};
+        
         let html = '';
         let hasOrders = false;
         
@@ -1391,6 +1548,7 @@
               <div style="margin-bottom: 0.8rem;">
                 <div class="master-badge">${masterName}</div>
             `;
+            
             orders.forEach(order => {
               const completionTime = order.completionTime || 'Не указано';
               html += `
@@ -1411,6 +1569,7 @@
                 </div>
               `;
             });
+            
             html += '</div>';
           }
         });
@@ -1424,14 +1583,16 @@
             </div>
           `;
         }
+        
         container.innerHTML = html;
       }
-      
+
       // === УЧЕТ ЗАКАЗОВ ===
       function renderOrders() {
         const container = document.getElementById('ordersList');
         const today = getTodayKey();
         const dayData = data.currentWeek[today] || {};
+        
         let html = '';
         let hasOrders = false;
         
@@ -1446,6 +1607,7 @@
                   ${masterName}
                 </h4>
             `;
+            
             orders.forEach(order => {
               const completionTime = order.completionTime || 'Не указано';
               html += `
@@ -1464,7 +1626,7 @@
                     <div class="order-amount">
                       ${formatCurrency(order.amount)}
                     </div>
-                    <button class="btn btn-secondary btn-xs edit-order-btn" 
+                    <button class="btn btn-secondary btn-xs" 
                             data-id="${order.id}" 
                             data-master="${masterName}">
                       <i class="fas fa-edit"></i>
@@ -1473,6 +1635,7 @@
                 </div>
               `;
             });
+            
             html += '</div>';
           }
         });
@@ -1486,26 +1649,27 @@
             </div>
           `;
         }
+        
         container.innerHTML = html;
         document.getElementById('addOrderBtn').addEventListener('click', openAddOrderModal);
         
         // Обработчики редактирования
-        document.querySelectorAll('.edit-order-btn').forEach(btn => {
+        document.querySelectorAll('[data-id]').forEach(btn => {
           btn.addEventListener('click', (e) => {
-            const orderId = e.target.closest('.edit-order-btn').dataset.id;
-            const masterName = e.target.closest('.edit-order-btn').dataset.master;
+            const orderId = e.target.closest('[data-id]').dataset.id;
+            const masterName = e.target.closest('[data-id]').dataset.master;
             openEditOrderModal(orderId, masterName);
           });
         });
       }
-      
+
       // === ФИНАНСЫ ===
       function renderFinance() {
         renderSalaryCalculation();
         renderWeekStatistics();
         renderRevenueShare();
       }
-      
+
       function renderSalaryCalculation() {
         const container = document.getElementById('salaryCalculation');
         let html = `
@@ -1521,7 +1685,9 @@
               </thead>
               <tbody>
         `;
+        
         let hasData = false;
+        
         MASTERS.forEach(master => {
           let total = 0;
           for (const day in data.currentWeek) {
@@ -1530,11 +1696,14 @@
               total += masterData.orders.reduce((sum, o) => sum + o.amount, 0);
             }
           }
+          
           if (total > 0) hasData = true;
+          
           const baseShare = total / 2;
           const bonusPercent = data.weeklyBonuses[master] || 0;
           const bonusAmount = (baseShare * (bonusPercent / 100));
           const finalSalary = baseShare + bonusAmount;
+          
           html += `
             <tr data-master="${master}">
               <td style="text-align: left; display: flex; align-items: center; gap: 0.35rem;">
@@ -1555,11 +1724,13 @@
             </tr>
           `;
         });
+        
         html += `
             </tbody>
           </table>
           </div>
         `;
+        
         if (!hasData) {
           html = `
             <div class="empty-state">
@@ -1582,6 +1753,7 @@
             </div>
           `;
         }
+        
         container.innerHTML = html;
         
         // Добавляем обработчики
@@ -1589,30 +1761,24 @@
           slider.addEventListener('input', function() {
             const master = this.dataset.master;
             const bonusPercent = parseInt(this.value);
+            
             // Обновляем данные
             data.weeklyBonuses[master] = bonusPercent;
             this.nextElementSibling.textContent = bonusPercent + '%';
+            
             // Пересчитываем и обновляем сумму
             updateSalaryRow(master, bonusPercent);
           });
         });
         
-        // Проверяем существование элементов перед добавлением обработчиков
-        const applyBonusesBtn = document.getElementById('applyBonuses');
-        const closeWeekFinanceBtn = document.getElementById('closeWeekFinance');
+        document.getElementById('applyBonuses')?.addEventListener('click', () => {
+          saveData(data);
+          showNotification('Премии применены!', 'success');
+        });
         
-        if (applyBonusesBtn) {
-          applyBonusesBtn.addEventListener('click', () => {
-            saveData(data);
-            showNotification('Премии применены!', 'success');
-          });
-        }
-        
-        if (closeWeekFinanceBtn) {
-          closeWeekFinanceBtn.addEventListener('click', closeWeek);
-        }
+        document.getElementById('closeWeekFinance')?.addEventListener('click', closeWeek);
       }
-      
+
       function updateSalaryRow(masterName, bonusPercent) {
         // Находим строку для этого мастера
         const row = document.querySelector(`tr[data-master="${masterName}"]`);
@@ -1638,14 +1804,14 @@
           finalSalaryCell.textContent = formatCurrency(finalSalary);
         }
       }
-      
+
       function renderWeekStatistics() {
         const container = document.getElementById('weekStatistics');
         let totalRevenue = 0;
         let totalOrders = 0;
         let cashOrders = 0;
         let cardOrders = 0;
-        
+
         // Собираем все заказы за неделю
         for (const day in data.currentWeek) {
           for (const master in data.currentWeek[day]) {
@@ -1658,8 +1824,9 @@
             });
           }
         }
-        
+
         const avgCheck = totalOrders > 0 ? Math.round(totalRevenue / totalOrders) : 0;
+        
         let html = `
           <div class="week-summary">
             <div class="summary-item">
@@ -1679,6 +1846,7 @@
               <div class="summary-label">Нал/Карта</div>
             </div>
           </div>
+          
           <div class="master-stats">
         `;
         
@@ -1691,6 +1859,7 @@
               masterTotal += masterData.orders.reduce((sum, o) => sum + o.amount, 0);
             }
           }
+          
           if (masterTotal > 0) {
             html += `
               <div class="master-stat-item">
@@ -1700,7 +1869,9 @@
             `;
           }
         });
+        
         html += '</div>';
+        
         if (totalOrders === 0) {
           html = `
             <div class="empty-state">
@@ -1710,9 +1881,10 @@
             </div>
           `;
         }
+        
         container.innerHTML = html;
       }
-      
+
       function renderRevenueShare() {
         const container = document.getElementById('revenueShare');
         let totalRevenue = 0;
@@ -1744,14 +1916,17 @@
         
         // Цвета для диаграммы
         const colors = ['#6c9eff', '#4a7de0', '#2d5bc2', '#1e40af', '#1d3696', '#1a2d7d'];
+        
         let html = `
           <div class="chart-container">
             <div class="pie-chart" id="revenueChart">
               <div class="chart-center">${formatCurrency(totalRevenue)}</div>
             </div>
           </div>
+          
           <div class="chart-legend">
         `;
+        
         MASTERS.forEach((master, index) => {
           if (masterRevenues[master] > 0) {
             const percentage = ((masterRevenues[master] / totalRevenue) * 100).toFixed(1);
@@ -1763,23 +1938,25 @@
             `;
           }
         });
+        
         html += '</div>';
         container.innerHTML = html;
         
         // Создаем диаграмму
         createPieChart(masterRevenues, colors);
       }
-      
+
       function createPieChart(revenues, colors) {
         const chart = document.getElementById('revenueChart');
-        if (!chart) return;
-        
         chart.innerHTML = '<div class="chart-center">' + chart.querySelector('.chart-center').outerHTML + '</div>';
+        
         let startAngle = 0;
+        
         MASTERS.forEach((master, index) => {
           if (revenues[master] > 0) {
             const total = Object.values(revenues).reduce((sum, val) => sum + val, 0);
             const sliceAngle = (revenues[master] / total) * 360;
+            
             const slice = document.createElement('div');
             slice.style.position = 'absolute';
             slice.style.top = '0';
@@ -1789,15 +1966,17 @@
             slice.style.clipPath = `path('M 75,75 L ${75 + 75 * Math.cos((startAngle - 90) * Math.PI / 180)},${75 + 75 * Math.sin((startAngle - 90) * Math.PI / 180)} A 75,75 0 ${sliceAngle > 180 ? 1 : 0},1 ${75 + 75 * Math.cos((startAngle + sliceAngle - 90) * Math.PI / 180)},${75 + 75 * Math.sin((startAngle + sliceAngle - 90) * Math.PI / 180)} Z')`;
             slice.style.backgroundColor = colors[index];
             slice.style.borderRadius = '50%';
+            
             chart.appendChild(slice);
             startAngle += sliceAngle;
           }
         });
       }
-      
+
       // === АРХИВ ===
       function renderArchive() {
         const container = document.getElementById('archiveList');
+        
         if (data.history.length === 0) {
           container.innerHTML = `
             <div class="empty-state">
@@ -1808,10 +1987,13 @@
           `;
           return;
         }
+        
         let html = '<div style="display: flex; flex-direction: column; gap: 0.65rem;">';
+        
         data.history.slice().reverse().forEach((week, index) => {
           const weekData = week.reportData;
           let weekTotal = 0;
+          
           // Считаем общую выручку за неделю
           for (const day in weekData) {
             for (const master in weekData[day]) {
@@ -1819,6 +2001,7 @@
               weekTotal += orders.reduce((sum, order) => sum + order.amount, 0);
             }
           }
+          
           html += `
             <div style="background: var(--bg-accent); border-radius: var(--border-radius-sm); padding: 0.9rem; border-left: 2px solid var(--accent-primary);">
               <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
@@ -1828,7 +2011,7 @@
                 </div>
                 <div style="font-size: 0.9rem; font-weight: 600;">${formatCurrency(weekTotal)}</div>
               </div>
-              <button class="btn btn-secondary btn-sm export-week-btn" 
+              <button class="btn btn-secondary btn-sm" 
                       style="width: 100%;" 
                       data-week="${week.weekId}">
                 <i class="fas fa-file-export"></i>
@@ -1837,13 +2020,14 @@
             </div>
           `;
         });
+        
         html += '</div>';
         container.innerHTML = html;
         
         // Добавляем обработчики экспорта
-        document.querySelectorAll('.export-week-btn').forEach(btn => {
+        document.querySelectorAll('[data-week]').forEach(btn => {
           btn.addEventListener('click', (e) => {
-            const weekId = e.target.closest('.export-week-btn').dataset.week;
+            const weekId = e.target.closest('[data-week]').dataset.week;
             exportWeekData(weekId);
           });
         });
@@ -1851,13 +2035,14 @@
         // Инициализация кнопки очистки данных
         document.getElementById('clearDataBtn').addEventListener('click', showCaptchaModal);
       }
-      
+
       // === КНОПКА ОЧИСТКИ ДАННЫХ ===
       function showCaptchaModal() {
         // Генерируем простую капчу
         const num1 = Math.floor(Math.random() * 10) + 1;
         const num2 = Math.floor(Math.random() * 10) + 1;
         captchaValue = (num1 + num2).toString();
+        
         modalRoot.innerHTML = `
           <div class="modal active">
             <div class="modal-content">
@@ -1881,20 +2066,21 @@
             </div>
           </div>
         `;
+        
         setupModalHandlers();
+        
         document.getElementById('confirmClearBtn').addEventListener('click', () => {
           const userInput = document.getElementById('captchaInput').value;
           if (userInput === captchaValue) {
             if (confirm('Вы уверены, что хотите очистить все данные? Это действие нельзя отменить.')) {
-              localStorage.clear();
+              localStorage.removeItem(STORAGE_KEY);
               data = {
                 config: { masters: MASTERS, director: DIRECTOR },
                 currentWeek: {},
                 weeklyBonuses: {},
                 history: [],
-                version: '13.0'
+                version: '14.0'
               };
-              saveData(data);
               showNotification('Все данные очищены!', 'success');
               modalRoot.innerHTML = '';
               renderHome();
@@ -1904,12 +2090,12 @@
           }
         });
       }
-      
+
       // === МОДАЛЬНЫЕ ОКНА ===
       function openAddOrderModal() {
         const masterName = MASTERS[0]; // По умолчанию первый мастер
-        // Генерируем более уникальный ID
-        const orderId = 'order_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        const orderId = Date.now() + '_' + Math.random().toString(36).substr(2, 5);
+        
         modalRoot.innerHTML = `
           <div class="modal active">
             <div class="modal-content">
@@ -1923,24 +2109,29 @@
               <form id="orderForm">
                 <input type="hidden" id="orderId" value="${orderId}">
                 <input type="hidden" id="masterName" value="${masterName}">
+                
                 <div class="form-group">
                   <label class="form-label">Мастер:</label>
                   <select id="orderMaster" class="form-control">
                     ${MASTERS.map(master => `<option value="${master}">${master}</option>`).join('')}
                   </select>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Сумма (₽):</label>
                   <input type="number" id="orderAmount" class="form-control" step="100" min="0" required>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Описание работ:</label>
                   <textarea id="orderDescription" class="form-control form-textarea" required placeholder="Что сделано"></textarea>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Марка авто:</label>
                   <input type="text" id="orderCarBrand" class="form-control" placeholder="Например: Toyota">
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Тип оплаты:</label>
                   <select id="orderPaymentType" class="form-control" required>
@@ -1949,6 +2140,7 @@
                     <option value="card">Карта</option>
                   </select>
                 </div>
+                
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-top: 1rem;">
                   <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i>
@@ -1963,15 +2155,18 @@
             </div>
           </div>
         `;
+        
         setupModalHandlers();
         document.getElementById('orderForm').addEventListener('submit', saveOrder);
       }
-      
+
       function openEditOrderModal(orderId, masterName) {
         const today = getTodayKey();
         const order = data.currentWeek[today][masterName].orders
           .find(o => o.id === orderId);
+        
         if (!order) return;
+        
         modalRoot.innerHTML = `
           <div class="modal active">
             <div class="modal-content">
@@ -1985,6 +2180,7 @@
               <form id="orderForm">
                 <input type="hidden" id="orderId" value="${order.id}">
                 <input type="hidden" id="masterName" value="${masterName}">
+                
                 <div class="form-group">
                   <label class="form-label">Мастер:</label>
                   <select id="orderMaster" class="form-control">
@@ -1993,18 +2189,22 @@
                     ).join('')}
                   </select>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Сумма (₽):</label>
                   <input type="number" id="orderAmount" class="form-control" step="100" min="0" value="${order.amount}" required>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Описание работ:</label>
                   <textarea id="orderDescription" class="form-control form-textarea" required>${order.workDescription}</textarea>
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Марка авто:</label>
                   <input type="text" id="orderCarBrand" class="form-control" value="${order.carBrand || ''}" placeholder="Например: Toyota">
                 </div>
+                
                 <div class="form-group">
                   <label class="form-label">Тип оплаты:</label>
                   <select id="orderPaymentType" class="form-control" required>
@@ -2012,6 +2212,7 @@
                     <option value="card" ${order.paymentType === 'card' ? 'selected' : ''}>Карта</option>
                   </select>
                 </div>
+                
                 <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 0.55rem; margin-top: 1rem;">
                   <button type="submit" class="btn btn-primary">
                     <i class="fas fa-save"></i>
@@ -2026,42 +2227,34 @@
             </div>
           </div>
         `;
+        
         setupModalHandlers();
         document.getElementById('deleteOrderBtn').addEventListener('click', () => {
           deleteOrder(orderId, masterName);
         });
         document.getElementById('orderForm').addEventListener('submit', saveOrder);
       }
-      
+
       function setupModalHandlers() {
-        const closeModalBtn = document.getElementById('closeModal');
-        const cancelOrderBtn = document.getElementById('cancelOrderBtn');
-        const modalElement = document.querySelector('.modal');
+        document.getElementById('closeModal').addEventListener('click', () => {
+          modalRoot.innerHTML = '';
+        });
         
-        if (closeModalBtn) {
-          closeModalBtn.addEventListener('click', () => {
-            modalRoot.innerHTML = '';
-          });
-        }
-        
-        if (cancelOrderBtn) {
-          cancelOrderBtn.addEventListener('click', () => {
-            modalRoot.innerHTML = '';
-          });
-        }
+        document.getElementById('cancelOrderBtn')?.addEventListener('click', () => {
+          modalRoot.innerHTML = '';
+        });
         
         // Закрытие по клику вне модального окна
-        if (modalElement) {
-          modalElement.addEventListener('click', (e) => {
-            if (e.target === modalElement) {
-              modalRoot.innerHTML = '';
-            }
-          });
-        }
+        document.querySelector('.modal').addEventListener('click', (e) => {
+          if (e.target === document.querySelector('.modal')) {
+            modalRoot.innerHTML = '';
+          }
+        });
       }
-      
+
       function saveOrder(e) {
         e.preventDefault();
+        
         const id = document.getElementById('orderId').value;
         const master = document.getElementById('orderMaster').value;
         const amount = parseFloat(document.getElementById('orderAmount').value);
@@ -2078,10 +2271,12 @@
           showNotification('Укажите корректную сумму', 'error');
           return;
         }
+        
         if (!description.trim()) {
           showNotification('Укажите описание работ', 'error');
           return;
         }
+        
         if (!paymentType) {
           showNotification('Выберите тип оплаты', 'error');
           return;
@@ -2127,7 +2322,7 @@
             break;
         }
       }
-      
+
       function deleteOrder(orderId, masterName) {
         const today = getTodayKey();
         if (data.currentWeek[today] && data.currentWeek[today][masterName]) {
@@ -2152,7 +2347,7 @@
             break;
         }
       }
-      
+
       function openSalaryModal() {
         modalRoot.innerHTML = `
           <div class="modal active">
@@ -2177,6 +2372,7 @@
                     </thead>
                     <tbody>
         `;
+        
         MASTERS.forEach(master => {
           let total = 0;
           for (const day in data.currentWeek) {
@@ -2185,10 +2381,12 @@
               total += masterData.orders.reduce((sum, o) => sum + o.amount, 0);
             }
           }
+          
           const baseShare = total / 2;
           const bonusPercent = data.weeklyBonuses[master] || 0;
           const bonusAmount = (baseShare * (bonusPercent / 100));
           const finalSalary = baseShare + bonusAmount;
+          
           modalRoot.querySelector('.modal-content').innerHTML += `
             <tr data-master="${master}">
               <td style="text-align: left; display: flex; align-items: center; gap: 0.35rem;">
@@ -2199,7 +2397,7 @@
               <td>
                 <div class="slider-container">
                   <input type="range" min="0" max="20" step="2" value="${bonusPercent}" 
-                         data-master="${master}" class="bonus-slider-modal">
+                         data-master="${master}" class="bonus-slider">
                   <span class="bonus-percent">${bonusPercent}%</span>
                 </div>
               </td>
@@ -2209,6 +2407,7 @@
             </tr>
           `;
         });
+        
         modalRoot.querySelector('.modal-content').innerHTML += `
                     </tbody>
                   </table>
@@ -2231,16 +2430,19 @@
             </div>
           </div>
         `;
+        
         setupModalHandlers();
         
         // Добавляем обработчики для слайдеров в модальном окне
-        document.querySelectorAll('.modal .bonus-slider-modal').forEach(slider => {
+        document.querySelectorAll('.modal .bonus-slider').forEach(slider => {
           slider.addEventListener('input', function() {
             const master = this.dataset.master;
             const bonusPercent = parseInt(this.value);
+            
             // Обновляем данные
             data.weeklyBonuses[master] = bonusPercent;
             this.nextElementSibling.textContent = bonusPercent + '%';
+            
             // Пересчитываем и обновляем сумму
             updateSalaryRowModal(master, bonusPercent);
           });
@@ -2250,10 +2452,11 @@
           saveData(data);
           showNotification('Премии применены!', 'success');
         });
+        
         document.getElementById('closeWeekModal').addEventListener('click', closeWeek);
         document.getElementById('exportSalaryModal').addEventListener('click', exportWeek);
       }
-      
+
       function updateSalaryRowModal(masterName, bonusPercent) {
         // Находим строку для этого мастера в модальном окне
         const row = document.querySelector(`.modal tr[data-master="${masterName}"]`);
@@ -2279,7 +2482,7 @@
           finalSalaryCell.textContent = formatCurrency(finalSalary);
         }
       }
-      
+
       function closeWeek() {
         const weekId = getCurrentWeekId();
         data.history.push({
@@ -2298,13 +2501,13 @@
         renderFinance();
         renderArchive();
       }
-      
+
       // === ЭКСПОРТ ДАННЫХ ===
       function exportWeek() {
         // Создаем BOM для корректной кодировки UTF-8
         let csv = '\uFEFF'; // BOM для Excel
-        csv += 'Мастер;Выручка;Базовая доля;Премия %;Сумма премии;Итог к выплате
-';
+        csv += 'Мастер;Выручка;Базовая доля;Премия %;Сумма премии;Итог к выплате\n';
+        
         MASTERS.forEach(master => {
           let total = 0;
           for (const day in data.currentWeek) {
@@ -2313,24 +2516,27 @@
               total += masterData.orders.reduce((sum, o) => sum + o.amount, 0);
             }
           }
+          
           const baseShare = total / 2;
           const bonusPercent = data.weeklyBonuses[master] || 0;
           const bonusAmount = (baseShare * (bonusPercent / 100));
           const finalSalary = baseShare + bonusAmount;
+          
           // Используем точку с запятой как разделитель для русской локали
-          csv += `"${master}";"${total.toFixed(2).replace('.', ',')}";"${baseShare.toFixed(2).replace('.', ',')}";"${bonusPercent}";"${bonusAmount.toFixed(2).replace('.', ',')}";"${finalSalary.toFixed(2).replace('.', ',')}"
-`;
+          csv += `"${master}";"${total.toFixed(2).replace('.', ',')}";"${baseShare.toFixed(2).replace('.', ',')}";"${bonusPercent}";"${bonusAmount.toFixed(2).replace('.', ',')}";"${finalSalary.toFixed(2).replace('.', ',')}"\n`;
         });
+        
         downloadFile(csv, `Зарплата_${new Date().toISOString().slice(0, 10)}.csv`, 'text/csv;charset=utf-8');
       }
-      
+
       function exportWeekData(weekId) {
         const weekData = data.history.find(w => w.weekId === weekId);
         if (!weekData) return;
+        
         // Создаем BOM для корректной кодировки UTF-8
         let csv = '\uFEFF'; // BOM для Excel
-        csv += 'Мастер;День;Сумма;Описание;Время завершения;Тип оплаты;Марка авто
-';
+        csv += 'Мастер;День;Сумма;Описание;Время завершения;Тип оплаты;Марка авто\n';
+        
         for (const day in weekData.reportData) {
           for (const master in weekData.reportData[day]) {
             const orders = weekData.reportData[day][master].orders || [];
@@ -2339,14 +2545,15 @@
               const description = order.workDescription.replace(/"/g, '""');
               const carBrand = (order.carBrand || '').replace(/"/g, '""');
               const completionTime = order.completionTime || 'Не указано';
-              csv += `"${master}";"${day}";"${order.amount.toFixed(2).replace('.', ',')}";"${description}";"${completionTime}";"${order.paymentType}";"${carBrand}"
-`;
+              
+              csv += `"${master}";"${day}";"${order.amount.toFixed(2).replace('.', ',')}";"${description}";"${completionTime}";"${order.paymentType}";"${carBrand}"\n`;
             });
           }
         }
+        
         downloadFile(csv, `Неделя_${weekId}.csv`, 'text/csv;charset=utf-8');
       }
-      
+
       function downloadFile(content, filename, contentType) {
         const blob = new Blob([content], { type: contentType });
         const url = URL.createObjectURL(blob);
@@ -2358,7 +2565,7 @@
         document.body.removeChild(a);
         URL.revokeObjectURL(url);
       }
-      
+
       // === УВЕДОМЛЕНИЯ ===
       function showNotification(message, type = 'info') {
         const notification = document.createElement('div');
@@ -2370,6 +2577,7 @@
           </div>
           <button class="notification-close">&times;</button>
         `;
+        
         notificationRoot.appendChild(notification);
         
         // Анимация появления
@@ -2397,7 +2605,7 @@
           }, 300);
         });
       }
-      
+
       // === ИНИЦИАЛИЗАЦИЯ ===
       document.addEventListener('DOMContentLoaded', () => {
         initThemeToggle();
