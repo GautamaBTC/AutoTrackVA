@@ -518,7 +518,7 @@
       left: -100%;
       width: 100%;
       height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
       transition: 0.5s;
     }
 
@@ -685,7 +685,7 @@
       max-width: 450px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
       border: 1px solid rgba(108, 158, 255, 0.15);
       position: relative;
     }
@@ -748,7 +748,7 @@
       color: #ffffff;
       padding: 0.8rem 1rem;
       border-radius: var(--border-radius-sm);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
       font-weight: 500;
       transform: translateX(100%);
       transition: transform 0.3s ease-out;
@@ -1351,7 +1351,7 @@
       'use strict';
 
       // === КОНСТАНТЫ И НАСТРОЙКИ ===
-      const STORAGE_KEY = 'vipAutoJournalData_v12';
+      const STORAGE_KEY = 'vipAutoJournalData_v13';
       const MASTERS = ["Владимир Ч.", "Владимир А.", "Максим", "Андрей", "Данила", "Артём"];
       const DIRECTOR = "Орлов Владимир";
 
@@ -1364,7 +1364,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '12.0'
+            version: '13.0'
           };
         } catch (error) {
           console.error('Ошибка загрузки данных:', error);
@@ -1374,7 +1374,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '12.0'
+            version: '13.0'
           };
         }
       }
@@ -2080,8 +2080,9 @@
                 currentWeek: {},
                 weeklyBonuses: {},
                 history: [],
-                version: '12.0'
+                version: '13.0'
               };
+              saveData(data);
               showNotification('Все данные очищены!', 'success');
               modalRoot.innerHTML = '';
               renderHome();
@@ -2573,7 +2574,7 @@
         notification.className = `notification ${type} slide-in`;
         notification.innerHTML = `
           <div style="display: flex; align-items: center; gap: 0.5rem;">
-            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : type === 'info' ? 'info-circle' : 'bell'}"></i>
+            <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : type === 'warning' ? 'exclamation-triangle' : 'info-circle'}"></i>
             <span>${message}</span>
           </div>
           <button class="notification-close">&times;</button>
