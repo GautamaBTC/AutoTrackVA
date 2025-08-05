@@ -115,11 +115,12 @@
       top: 0;
       left: 0;
       right: 0;
-      z-index: 100;
+      z-index: 1000;
       border-bottom: 1px solid rgba(108, 158, 255, 0.2);
       display: flex;
       justify-content: space-between;
       align-items: center;
+      height: 56px;
     }
 
     .app-title {
@@ -245,7 +246,7 @@
       right: 0;
       background: var(--bg-secondary);
       border-top: 1px solid rgba(108, 158, 255, 0.2);
-      z-index: 100;
+      z-index: 1000;
       padding: 0.4rem 0;
       backdrop-filter: blur(10px);
     }
@@ -297,12 +298,13 @@
 
     /* Основной контент */
     .main-content {
-      height: calc(100vh - 100px);
+      height: calc(100vh - 56px - 56px); /* Высота экрана минус хедер и футер */
       overflow-y: auto;
       padding: 0.9rem;
       padding-top: calc(56px + 0.9rem); /* Высота хедера + отступ */
-      padding-bottom: 70px;
+      padding-bottom: 70px; /* Отступ для футера */
       margin-top: 0;
+      scroll-padding-top: calc(56px + 0.9rem); /* Учитываем хедер при прокрутке */
     }
 
     .tab-content {
@@ -381,7 +383,7 @@
       border: 1px solid rgba(108, 158, 255, 0.15);
       position: relative;
       overflow: hidden;
-      scroll-margin-top: 70px; /* Для корректного позиционирования при прокрутке */
+      scroll-margin-top: calc(56px + 0.9rem); /* Учитываем хедер при прокрутке */
     }
 
     .section::before {
@@ -661,7 +663,7 @@
       display: none;
       justify-content: center;
       align-items: center;
-      z-index: 1000;
+      z-index: 2000;
       padding: 1rem;
       backdrop-filter: blur(10px);
     }
@@ -683,7 +685,7 @@
       max-width: 450px;
       max-height: 90vh;
       overflow-y: auto;
-      box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+      box-shadow: 0 15px 35px rgba(0,0,0,0.5);
       border: 1px solid rgba(108, 158, 255, 0.15);
       position: relative;
     }
@@ -735,7 +737,7 @@
       position: fixed;
       top: 15px;
       right: 15px;
-      z-index: 1001;
+      z-index: 2001;
       display: flex;
       flex-direction: column;
       gap: 0.5rem;
@@ -746,7 +748,7 @@
       color: #ffffff;
       padding: 0.8rem 1rem;
       border-radius: var(--border-radius-sm);
-      box-shadow: 0 6px 15px rgba(0,0,0,0.25);
+      box-shadow: 0 6px 15px rgba(0,0,0,0.3);
       font-weight: 500;
       transform: translateX(100%);
       transition: transform 0.3s ease-out;
@@ -1108,64 +1110,12 @@
     .amount-neutral {
       color: var(--warning);
     }
-    
-    /* Кастомная иконка автомобиля */
-    .custom-car-icon {
-      display: inline-block;
-      width: 24px;
-      height: 24px;
-      position: relative;
-    }
-    
-    .custom-car-icon::before {
-      content: "";
-      position: absolute;
-      top: 8px;
-      left: 2px;
-      width: 20px;
-      height: 8px;
-      background: var(--accent-primary);
-      border-radius: 2px;
-      box-shadow: 0 2px 0 rgba(0,0,0,0.2);
-    }
-    
-    .custom-car-icon::after {
-      content: "";
-      position: absolute;
-      top: 4px;
-      left: 6px;
-      width: 12px;
-      height: 6px;
-      background: var(--accent-secondary);
-      border-radius: 2px 2px 0 0;
-    }
-    
-    .custom-car-icon .wheel {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: #333;
-      border-radius: 50%;
-    }
-    
-    .custom-car-icon .wheel.front {
-      top: 12px;
-      left: 4px;
-    }
-    
-    .custom-car-icon .wheel.rear {
-      top: 12px;
-      right: 4px;
-    }
   </style>
 </head>
 <body data-theme="dark">
   <header>
     <h1 class="app-title">
-      <div class="custom-car-icon">
-        <div class="wheel front"></div>
-        <div class="wheel rear"></div>
-      </div>
+      <i class="fas fa-car"></i>
       <span class="vip">VIP</span><span class="auto">AUTO</span>
     </h1>
     <div class="header-controls">
@@ -1401,7 +1351,7 @@
       'use strict';
 
       // === КОНСТАНТЫ И НАСТРОЙКИ ===
-      const STORAGE_KEY = 'vipAutoJournalData_v11';
+      const STORAGE_KEY = 'vipAutoJournalData_v12';
       const MASTERS = ["Владимир Ч.", "Владимир А.", "Максим", "Андрей", "Данила", "Артём"];
       const DIRECTOR = "Орлов Владимир";
 
@@ -1414,7 +1364,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '11.0'
+            version: '12.0'
           };
         } catch (error) {
           console.error('Ошибка загрузки данных:', error);
@@ -1424,7 +1374,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '11.0'
+            version: '12.0'
           };
         }
       }
@@ -2123,16 +2073,15 @@
         document.getElementById('confirmClearBtn').addEventListener('click', () => {
           const userInput = document.getElementById('captchaInput').value;
           if (userInput === captchaValue) {
-            if (confirm('Вы уверены, что хотите очистить ВСЕ данные? Это действие нельзя отменить.')) {
+            if (confirm('Вы уверены, что хотите очистить все данные? Это действие нельзя отменить.')) {
               localStorage.clear();
               data = {
                 config: { masters: MASTERS, director: DIRECTOR },
                 currentWeek: {},
                 weeklyBonuses: {},
                 history: [],
-                version: '11.0'
+                version: '12.0'
               };
-              saveData(data);
               showNotification('Все данные очищены!', 'success');
               modalRoot.innerHTML = '';
               renderHome();
