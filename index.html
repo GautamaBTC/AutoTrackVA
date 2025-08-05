@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-  <title>Облачный бортовой журнал VIPавто</title>
+  <title>Облачный бортовой журнал VIPAUTO</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
@@ -193,7 +193,7 @@
       width: 20px;
       height: 20px;
       border-radius: 50%;
-      background: linear-gradient(145deg, #ffffff, #e0e0e0);
+      background: linear-gradient(145deg, #4a5568, #2d3748);
       box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
       transition: var(--transition);
       z-index: 1;
@@ -201,7 +201,6 @@
 
     .theme-toggle[data-theme="dark"]::before {
       left: 3px;
-      background: linear-gradient(145deg, #4a5568, #2d3748);
     }
 
     .theme-toggle[data-theme="light"]::before {
@@ -305,6 +304,7 @@
     .tab-content {
       display: none;
       animation: fadeIn 0.4s ease-out;
+      min-height: calc(100vh - 150px);
     }
 
     .tab-content.active {
@@ -1103,13 +1103,65 @@
     .amount-neutral {
       color: var(--warning);
     }
+    
+    /* Кастомная иконка автомобиля */
+    .custom-car-icon {
+      display: inline-block;
+      width: 24px;
+      height: 24px;
+      position: relative;
+    }
+    
+    .custom-car-icon::before {
+      content: "";
+      position: absolute;
+      top: 8px;
+      left: 2px;
+      width: 20px;
+      height: 8px;
+      background: var(--accent-primary);
+      border-radius: 2px;
+      box-shadow: 0 2px 0 rgba(0,0,0,0.2);
+    }
+    
+    .custom-car-icon::after {
+      content: "";
+      position: absolute;
+      top: 4px;
+      left: 6px;
+      width: 12px;
+      height: 6px;
+      background: var(--accent-secondary);
+      border-radius: 2px 2px 0 0;
+    }
+    
+    .custom-car-icon .wheel {
+      position: absolute;
+      width: 4px;
+      height: 4px;
+      background: #333;
+      border-radius: 50%;
+    }
+    
+    .custom-car-icon .wheel.front {
+      top: 12px;
+      left: 4px;
+    }
+    
+    .custom-car-icon .wheel.rear {
+      top: 12px;
+      right: 4px;
+    }
   </style>
 </head>
 <body data-theme="dark">
   <header>
     <h1 class="app-title">
-      <i class="fas fa-car"></i>
-      <span class="vip">VIP</span><span class="auto">авто</span>
+      <div class="custom-car-icon">
+        <div class="wheel front"></div>
+        <div class="wheel rear"></div>
+      </div>
+      <span class="vip">VIP</span><span class="auto">AUTO</span>
     </h1>
     <div class="header-controls">
       <div class="theme-toggle" id="themeToggle" data-theme="dark">
@@ -1339,12 +1391,12 @@
   <div id="notification-root" class="notification-container"></div>
 
   <script>
-    // Облачный бортовой журнал VIPавто
+    // Облачный бортовой журнал VIPAUTO
     (function() {
       'use strict';
 
       // === КОНСТАНТЫ И НАСТРОЙКИ ===
-      const STORAGE_KEY = 'vipAutoJournalData_v8';
+      const STORAGE_KEY = 'vipAutoJournalData_v9';
       const MASTERS = ["Владимир Ч.", "Владимир А.", "Максим", "Андрей", "Данила", "Артём"];
       const DIRECTOR = "Орлов Владимир";
 
@@ -1357,7 +1409,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '8.0'
+            version: '9.0'
           };
         } catch (error) {
           console.error('Ошибка загрузки данных:', error);
@@ -1367,7 +1419,7 @@
             currentWeek: {},
             weeklyBonuses: {},
             history: [],
-            version: '8.0'
+            version: '9.0'
           };
         }
       }
@@ -2066,15 +2118,16 @@
         document.getElementById('confirmClearBtn').addEventListener('click', () => {
           const userInput = document.getElementById('captchaInput').value;
           if (userInput === captchaValue) {
-            if (confirm('Вы уверены, что хотите очистить все данные? Это действие нельзя отменить.')) {
-              localStorage.removeItem(STORAGE_KEY);
+            if (confirm('Вы уверены, что хотите очистить ВСЕ данные? Это действие нельзя отменить.')) {
+              localStorage.clear();
               data = {
                 config: { masters: MASTERS, director: DIRECTOR },
                 currentWeek: {},
                 weeklyBonuses: {},
                 history: [],
-                version: '8.0'
+                version: '9.0'
               };
+              saveData(data);
               showNotification('Все данные очищены!', 'success');
               modalRoot.innerHTML = '';
               renderHome();
